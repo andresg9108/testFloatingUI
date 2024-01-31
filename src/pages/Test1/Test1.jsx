@@ -60,6 +60,7 @@ const Test1 = () => {
 	}
 
 	useEffect(() => {
+		/*
 		[
 		  ['mouseenter', () => {
 		  	myTooltip.current.style.display = 'block';
@@ -77,6 +78,21 @@ const Test1 = () => {
 		  }],
 		].forEach(([event, listener]) => {
 		  myButton.current.addEventListener(event, listener);
+		});
+		*/
+
+		myButton.current.addEventListener('click', () => {
+			myTooltip.current.style.display = 'block';
+		  	updatePosition();
+		});
+
+		document.addEventListener('click', (event) => {
+		  if(myTooltip.current 
+		  	&& myButton.current 
+		  	&& !myTooltip.current.contains(event.target)
+		  	&& !myButton.current.contains(event.target)){
+		  	myTooltip.current.style.display = '';
+		  }
 		});
 	}, []);
 
